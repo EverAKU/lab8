@@ -17,11 +17,26 @@ int main(void) {
     double value;
     char inScale, outScale;
     printf("Enter the temperature value: ");
-    if (scanf("%lf", &value) != 1) return 0;
+    if (scanf("%lf", &value) != 1) {
+        printf("Invalid temperature input.\n");
+        return 0;
+    }
     printf("Enter the original scale (C, F, or K): ");
     if (scanf(" %c", &inScale) != 1) return 0;
+    if (!(inScale=='C'||inScale=='c'||inScale=='F'||inScale=='f'||inScale=='K'||inScale=='k')) {
+        printf("Invalid scale input.\n");
+        return 0;
+    }
+    if ((inScale=='K'||inScale=='k') && value < 0) {
+        printf("Invalid: Kelvin can't be negative.\n");
+        return 0;
+    }
     printf("Enter the scale to convert to (C, F, or K): ");
     if (scanf(" %c", &outScale) != 1) return 0;
+    if (!(outScale=='C'||outScale=='c'||outScale=='F'||outScale=='f'||outScale=='K'||outScale=='k')) {
+        printf("Invalid scale input.\n");
+        return 0;
+    }
     double inC = toC(value, inScale);
     double converted = fromC(inC, outScale);
     double convC = (outScale == 'C' || outScale == 'c') ? converted
