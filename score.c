@@ -10,7 +10,7 @@ int main(void) {
     if (score == 1) {
       break;
     }
-    if (score < 0) {
+    if (score <= 0) {
       printf("Invalid score.\n");
       continue;
     }
